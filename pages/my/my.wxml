@@ -1,0 +1,10 @@
+<!--pages/my/my.wxml-->
+<view>
+  <view>用户名：{{userInfo.nickName}}</view>
+  <view>性  别：{{userInfo.nickName}}</view>
+  <view>语  言：{{userInfo.language}}</view>
+  <view>所在城市：{{userInfo.city}}</view>
+  <view>所在省份：{{userInfo.province}}</view>
+  <view>所在国家：{{userInfo.country}}</view>
+  <view>头像地址：{{userInfo.avatarUrl}}</view>
+</view>
