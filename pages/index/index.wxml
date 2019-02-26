@@ -14,7 +14,7 @@
 
   <view class='scan_prompt' bindtap='imageButton'>
     <view class='image'>
-      <image src='../img/scan_code.png' style='width: 170px;height: 170px;'></image>
+      <image src='/images/index/scan_code.png' style='width: 170px;height: 170px;'></image>
     </view>
   </view>
 

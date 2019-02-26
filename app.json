@@ -18,32 +18,32 @@
     "list": [{
       "pagePath": "pages/index/index",
       "text": "首页",
-      "iconPath": "pages/img/index.png",
-      "selectedIconPath": "pages/img/index_select.png"
+      "iconPath": "/images/tabBar/index.png",
+      "selectedIconPath": "/images/tabBar/index_select.png"
     },
     {
       "pagePath": "pages/shop/shop",
       "text": "商店",
-      "iconPath": "pages/img/shop.png",
-      "selectedIconPath": "pages/img/shop_select.png"
+      "iconPath": "/images/tabBar/shop.png",
+      "selectedIconPath": "/images/tabBar/shop_select.png"
     },
     {
       "pagePath": "pages/order/order",
       "text": "订单",
-      "iconPath": "pages/img/order.png",
-      "selectedIconPath": "pages/img/order_select.png"
+      "iconPath": "/images/tabBar/order.png",
+      "selectedIconPath": "/images/tabBar/order_select.png"
     },
     {
       "pagePath": "pages/cart/cart",
       "text": "购物车",
-      "iconPath": "pages/img/cart.png",
-      "selectedIconPath": "pages/img/cart_select.png"
+      "iconPath": "/images/tabBar/cart.png",
+      "selectedIconPath": "/images/tabBar/cart_select.png"
     },
     {
       "pagePath": "pages/my/my",
       "text": "我的",
-      "iconPath": "pages/img/my.png",
-      "selectedIconPath": "pages/img/my_select.png"
+      "iconPath": "/images/tabBar/my.png",
+      "selectedIconPath": "/images/tabBar/my_select.png"
     }]
   }
 }
