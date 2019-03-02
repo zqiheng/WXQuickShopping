@@ -1,2 +1,5 @@
 <!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+<view class="outter">
+  <view class='inner'>1</view>
+  <view class='inner'>2</view>
+</view>

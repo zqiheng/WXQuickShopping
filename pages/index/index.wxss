@@ -36,6 +36,6 @@
 }
 
 .font_prompt{
-  font-size: 16px;
-  margin-bottom: 10px;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
 }

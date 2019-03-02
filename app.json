@@ -1,49 +1,53 @@
 {
-  "pages":[
+  "pages": [
+    "pages/details/details",
     "pages/index/index",
-    "pages/logs/logs",
     "pages/shop/shop",
     "pages/order/order",
     "pages/cart/cart",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/logs/logs",
+    "complements/template/template"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Quick Shopping",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "selectedColor":"#fab706",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "/images/tabBar/index.png",
-      "selectedIconPath": "/images/tabBar/index_select.png"
-    },
-    {
-      "pagePath": "pages/shop/shop",
-      "text": "商店",
-      "iconPath": "/images/tabBar/shop.png",
-      "selectedIconPath": "/images/tabBar/shop_select.png"
-    },
-    {
-      "pagePath": "pages/order/order",
-      "text": "订单",
-      "iconPath": "/images/tabBar/order.png",
-      "selectedIconPath": "/images/tabBar/order_select.png"
-    },
-    {
-      "pagePath": "pages/cart/cart",
-      "text": "购物车",
-      "iconPath": "/images/tabBar/cart.png",
-      "selectedIconPath": "/images/tabBar/cart_select.png"
-    },
-    {
-      "pagePath": "pages/my/my",
-      "text": "我的",
-      "iconPath": "/images/tabBar/my.png",
-      "selectedIconPath": "/images/tabBar/my_select.png"
-    }]
+    "selectedColor": "#fab706",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/tabBar/index.png",
+        "selectedIconPath": "/images/tabBar/index_select.png"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "text": "商店",
+        "iconPath": "/images/tabBar/shop.png",
+        "selectedIconPath": "/images/tabBar/shop_select.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "/images/tabBar/order.png",
+        "selectedIconPath": "/images/tabBar/order_select.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "/images/tabBar/cart.png",
+        "selectedIconPath": "/images/tabBar/cart_select.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/images/tabBar/my.png",
+        "selectedIconPath": "/images/tabBar/my_select.png"
+      }
+    ]
   }
 }
