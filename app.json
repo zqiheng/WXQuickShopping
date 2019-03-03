@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/details/details",
     "pages/index/index",
     "pages/shop/shop",
     "pages/order/order",
     "pages/cart/cart",
     "pages/my/my",
+    "pages/details/details",
     "pages/logs/logs",
     "complements/template/template"
   ],

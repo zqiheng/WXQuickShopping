@@ -4,68 +4,56 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    qRCodeMsg:''   // 扫码返回结果
+    codeMsg: '' // 扫码返回结果
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+
+  // 页面加载时
+  onLoad: function() {
+
   },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-  imageButton: function(e){  //点击图片事件
-    console.log(e)
+
+  //点击扫描图片事件
+  imageButton: function(e) {
     var _this = this;
-    wx.scanCode({  //扫描API
-      success: function (res) {
-        console.log(res);    //输出回调信息
+    //扫描API
+    wx.scanCode({
+      success: function(res) {
         _this.setData({
-          qRCodeMsg: res.result
+          codeMsg: res.result
         });
-        wx.showToast({
-          title: '成功',
-          duration: 2000
+
+        // 根据扫描productID请求后台数据
+        wx.request({
+          url: 'http://localhost:8080/product/get_one_product_info/req',
+          method: "POST",
+          data: {
+            "productID": res.result,
+          },
+          // 成功
+          success: function(data) {
+            if (data.data.code === 0) {
+              console.log("有商品信息，马上加载");
+              if (res.result) {
+                wx.navigateTo({
+                  url: '../details/details?productID=' + res.result,
+                })
+              }
+            } else {
+              wx.showToast({
+                title: '暂无此商品信息',
+                duration: 2000,
+              })
+            }
+          },
+          fail: function() {
+            wx.showToast({
+              title: '加载信息失败',
+              duration: 3000,
+            })
+          }
         })
       }
     })
   }
+  
 })
