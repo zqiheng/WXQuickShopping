@@ -19,14 +19,14 @@
 
 .top_info image{
   width: 640rpx;
-  height: 500rpx;
+  height: 640rpx;
 }
 
 /* 商品详情 */
 .main_group .detail {
   display: flex;
   flex-direction: column;  /*主轴为垂直方向*/
-  margin-top: 20rpx;
+  margin-top: 30rpx;
 }
 
 .detail .title {
@@ -42,7 +42,7 @@
   justify-content: space-between;
   align-content: center;
   width: 100%;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
 }
 
 .more_info .sell_num {
@@ -125,13 +125,13 @@ button {
 .detail-nav image {
   width: 70rpx;
   height: 50rpx;
-  margin: 20rpx 10rpx;
+  margin: 20rpx 30rpx;
 }
 
 .line_nav {
-  width: 5rpx;
+  width: 2rpx;
   height: 100%;
-  background-color: gainsboro;
+  background-color: rgba(218, 213, 213, 0.856);
 }
 
 .button-green {

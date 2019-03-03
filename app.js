@@ -34,6 +34,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    preURL: "http://zqiheng.e1.luyouxia.net:30795",
   }
 })

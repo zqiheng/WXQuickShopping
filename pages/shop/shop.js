@@ -1,4 +1,6 @@
 // pages/shop/shop.js
+const app = getApp();
+
 Page({
   data: {
     // 左侧点击类样式
@@ -7,6 +9,7 @@ Page({
 
   onLoad: function(){
     var _this = this;
+    var preURL = app.globalData.preURL;
 
     // 加载此页面时提示信息
     wx.showLoading({
@@ -15,7 +18,7 @@ Page({
 
     // 发起后台商品信息请求
     wx.request({
-      url: 'http://localhost:8080/product/get_all_product_infos/req',
+      url: preURL+'/product/get_all_product_infos/req',
       method: "POST",
       // 成功
       success: function(data){

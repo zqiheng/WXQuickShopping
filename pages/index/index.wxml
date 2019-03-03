@@ -1,15 +1,15 @@
 <!--index.wxml-->
 
-<view class="container">
-  <view class='scan_prompt' bindtap='imageButton'>
-    <view class='image'>
-      <image src='/images/index/scan_code.png' style='width: 350rpx;height: 350rpx;'></image>
+<view class="main_group" style='height:{{winHeight * 2}}rpx'>
+  <view class='scan_gourp'>
+    <view class='scan_prompt' bindtap='imageButton'>
+      
+        <image src='/images/index/scan_code.png'></image>
+      
+      <view class='font_prompt'>
+        <text>点击扫码购物</text>
+      </view>
     </view>
   </view>
-
-  <view class='font_prompt'>
-    <text>点击扫码购物</text>
-  </view>
-
   <!-- <text style='color:#f00;'>{{qRCodeMsg}}</text> -->
 </view>

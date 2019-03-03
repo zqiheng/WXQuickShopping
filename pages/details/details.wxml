@@ -11,9 +11,9 @@
     <scroll-view scroll-y="true">
       <text class="title">{{goods.productName}}</text>
       <view class='more_info'>
-        <text class="sell_num">销售数量 {{goods.sellQuantity === null ? 0:goods.sellQuantity}}</text>
         <text class="stock_num">库存数量 {{goods.stockQuantity}}</text>
-        <text class="price">￥ {{goods.productRealPrice}}</text>
+        <text class="sell_num">销售数量 {{goods.sellQuantity === null ? 0:goods.sellQuantity}}</text>
+        <text class="price">￥{{goods.productRealPrice}}</text>
       </view>
     </scroll-view>
   </view>

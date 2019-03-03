@@ -1,3 +1,5 @@
+const app = getApp();
+
 Page({
   data: {
     isLike: false,
@@ -9,13 +11,14 @@ Page({
 
   // 页面加载时渲染数据
   onLoad: function(event) {
+    var preURL = app.globalData.preURL;
     // console.log(event);
     var _this = this;
     var productID = event.productID;
 
     // 根据productID请求后台数据
     wx.request({
-      url: 'http://localhost:8080/product/get_one_product_info/req',
+      url: preURL+'/product/get_one_product_info/req',
       method: "POST",
       data:{
         "productID": productID,

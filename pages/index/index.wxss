@@ -1,41 +1,34 @@
 /**index.wxss**/
-.userinfo {
+
+.main_group{
+  height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.main_group .scan_gourp{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:  column;
 }
 
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
-
-.scan_prompt{
-  width: 200px;
-  height: 200px;
+.scan_gourp .scan_prompt{
+  width: 500rpx;
+  height: 500rpx;
   display:flex; 
   justify-content:center; 
   align-items:center;
+  flex-direction: column;
 }
 
-.image{
-  display:flex;
-  justify-content: center;
-  align-items:center;
-  margin: auto;
+.scan_prompt image{
+  width: 400rpx;
+  height: 400rpx;
 }
 
-.font_prompt{
+.scan_prompt .font_prompt{
   font-size: 30rpx;
-  margin-bottom: 20rpx;
 }

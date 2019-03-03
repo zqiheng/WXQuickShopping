@@ -4,17 +4,28 @@ const app = getApp()
 
 Page({
   data: {
-    codeMsg: '' // 扫码返回结果
+    codeMsg: '',
+    winHeight: 550
   },
 
   // 页面加载时
   onLoad: function() {
-
+    var _this = this;
+    // // 获取可视区高度
+    // wx.getSystemInfo({
+    //   success: function (res) {
+    //     _this.setData({
+    //       winHeight: res.windowHeight,
+    //     })
+    //   },
+    // })
   },
 
   //点击扫描图片事件
   imageButton: function(e) {
     var _this = this;
+    var preURL = app.globalData.preURL;
+
     //扫描API
     wx.scanCode({
       success: function(res) {
@@ -24,7 +35,7 @@ Page({
 
         // 根据扫描productID请求后台数据
         wx.request({
-          url: 'http://localhost:8080/product/get_one_product_info/req',
+          url: preURL+'/product/get_one_product_info/req',
           method: "POST",
           data: {
             "productID": res.result,
