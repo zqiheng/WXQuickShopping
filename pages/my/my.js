@@ -5,8 +5,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    orderItems: [
-      {
+    orderItems: [{
         typeId: 0,
         name: '待付款',
         url: 'bill',
@@ -35,7 +34,7 @@ Page({
 
 
   //事件处理函数
-  toOrder: function (e) {
+  toOrder: function(e) {
     console.log(e);
     wx.redirectTo({
       url: '../order/order'
@@ -43,7 +42,9 @@ Page({
   },
 
   // 页面加载时动作
-  onLoad: function () {
+  onLoad: function() {
+
+    // 用户信息获取
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -56,7 +57,7 @@ Page({
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
-        })
+        });
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -73,17 +74,38 @@ Page({
   },
 
   // 获取用户信息
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+    // 保存用户信息到数据中
+    if (app.globalData.userInfo != null) {
+      console.log("保存用户信息到数据库中");
+      var info = app.globalData.userInfo;
+      var preURL = app.globalData.preURL;
+      wx.request({
+        url: preURL + '/user/add_user_info/add',
+        method: "POST",
+        data: {
+          nickName: info.nickName,
+          gender: info.gender,
+          language: info.language,
+          city: info.city,
+          province: info.province,
+          country: info.country,
+          avatarUrl: info.avatarUrl,
+        }
+      });
+    }
   },
 
   // 我的地址
-  myAddress: function (e) {
-    wx.navigateTo({ url: '../addressList/addressList' });
+  myAddress: function(e) {
+    wx.navigateTo({
+      url: '../addressList/addressList'
+    });
   }
 })

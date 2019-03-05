@@ -1,0 +1,7 @@
+
+<!-- <view wx:for="{{carts}}" wx:key="carts[item]">
+  <view>商品名称：{{item.productName}}</view>
+  <view>商品价格：{{item.price * item.count}}</view>
+  <view>商品数量：{{item.count}}</view>
+</view> -->
+

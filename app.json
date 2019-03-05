@@ -6,8 +6,9 @@
     "pages/cart/cart",
     "pages/my/my",
     "pages/details/details",
-    "pages/logs/logs",
-    "complements/template/template"
+    "complements/template/template",
+    "pages/confirmorder/confirmorder",
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -15,6 +16,7 @@
     "navigationBarTitleText": "Quick Shopping",
     "navigationBarTextStyle": "black"
   },
+
   "tabBar": {
     "selectedColor": "#fab706",
     "list": [
@@ -31,12 +33,6 @@
         "selectedIconPath": "/images/tabBar/shop_select.png"
       },
       {
-        "pagePath": "pages/order/order",
-        "text": "订单",
-        "iconPath": "/images/tabBar/order.png",
-        "selectedIconPath": "/images/tabBar/order_select.png"
-      },
-      {
         "pagePath": "pages/cart/cart",
         "text": "购物车",
         "iconPath": "/images/tabBar/cart.png",
@@ -49,5 +45,11 @@
         "selectedIconPath": "/images/tabBar/my_select.png"
       }
     ]
+  },
+
+  "permission":{
+    "scope.userLocation": {
+      "desc": "获取定位，来选择商店哦"
+    }
   }
 }

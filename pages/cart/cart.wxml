@@ -4,11 +4,7 @@
 <view class="J-shopping-cart-empty" hidden="{{iscart}}">
   <view class="shopping-cart-empty">
     <view class="cart"></view>
-    <text class='empty-text'>您的购物车还是空的哦</text>
-    <!-- <p></p>
-    <navigator url="/pages/shop/shop" class="button button-primary" open-type='redirect' hover-class="other-navigator-hover">
-      购买商品
-    </navigator> -->
+    <view class='empty-text'>您的购物车还是空的哦</view>
   </view>
 </view>
 
@@ -23,15 +19,16 @@
 
       <view class="cart_container">
 
+        <!-- 如果没有选中商品不勾选图标 -->
         <view wx:if="{{!item.isSelect}}">
           <icon class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{index}}" type="circle" size="20"></icon>
         </view>
-
+        <!-- 如果选中商品勾选图标 -->
         <view wx:elif="{{item.isSelect}}">
-
           <icon class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{index}}" type="success" color="#f0145a" size="20"></icon>
         </view>
 
+        <!-- 购买商品的图片 -->
         <image class="item-image" src="{{item.productPicture}}"></image>
         <!-- 引入商品数量增减组件 -->
         <import src="../../complements/template/template.wxml" />

@@ -129,9 +129,9 @@ button {
 }
 
 .line_nav {
-  width: 2rpx;
+  width: 1rpx;
   height: 100%;
-  background-color: rgba(218, 213, 213, 0.856);
+  background-color: #e4e4e4;
 }
 
 .button-green {

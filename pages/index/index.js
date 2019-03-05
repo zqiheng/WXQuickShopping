@@ -11,14 +11,18 @@ Page({
   // 页面加载时
   onLoad: function() {
     var _this = this;
-    // // 获取可视区高度
-    // wx.getSystemInfo({
-    //   success: function (res) {
-    //     _this.setData({
-    //       winHeight: res.windowHeight,
-    //     })
-    //   },
-    // })
+    
+    // 获取用户经纬度，来判断距离用户最近的商铺
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度 
+      success: function (res) {
+        var latitude = res.latitude //维度 
+        var longitude = res.longitude //经度 
+        console.log("维度：" + latitude + "   经度：" + longitude);
+        // that.loadCity(latitude, longitude);
+      }
+    })
+    
   },
 
   //点击扫描图片事件

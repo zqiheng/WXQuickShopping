@@ -34,7 +34,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
-    preURL: "http://zqiheng.e1.luyouxia.net:30795",
+    userInfo: null,   // 用户信息
+    preURL: "http://zqiheng.e1.luyouxia.net:30795",  // 后台接口请求地址
+    shodInfo:null,   // 加载首页时，默认选择距离用户最近的商店
   }
 })

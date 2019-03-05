@@ -39,7 +39,6 @@ Page({
           productNorm: productDetail.productNorm,
           productPackingUnit: productDetail.productPackingUnit,
           productPicture: productDetail.productPicture,
-          productProposedPrice: productDetail.productProposedPrice,
           productRemark: productDetail.productRemark,
           productType: productDetail.productType,
           productTypeName: productDetail.productTypeName,
@@ -47,6 +46,7 @@ Page({
           sellQuantity: productDetail.sellQuantity,
           shopObj: productDetail.shopObj,
           stockQuantity: productDetail.stockQuantity,
+          activityRrice: productDetail.productActivityPrice,
           price: productDetail.productRealPrice,
           count: 1, // 默认商品购买数量
           totalMoney: productDetail.productRealPrice // 购买总价
@@ -153,7 +153,7 @@ Page({
     var title = this.data.goods.productName;
     console.log(title + "|| 商品加入了购物车");
 
-    // 如果商品的名称成都大于10，则显示部分信息
+    // 如果商品的名称长度大于10，则显示部分信息
     if (title.length > 10) {
       goods.productName = title.substring(0, 10) + '...';
     }
@@ -166,9 +166,9 @@ Page({
       // 遍历购物车数组  
       for (var j in arr) {
         // 判断购物车内的item的id，和事件传递过来的id，是否相等  
-        if (arr[j].goodsId == goodsId) {
-          // 相等的话，给count+1（即再次添加入购物车，数量+1）  
-          arr[j].count = arr[j].count + 1;
+        if (arr[j].goodsId === goods.goodsId) {
+          // 相等的话，缓存中的count+再次购买的商品数量（即再次添加入购物车）  
+          arr[j].count = arr[j].count + goods.count;
           // 最后，把购物车数据，存放入缓存（此处不用再给购物车数组push元素进去，因为这个是购物车有的，直接更新当前数组即可）  
           try {
             wx.setStorageSync('cart', arr)
