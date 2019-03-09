@@ -1,1 +1,261 @@
-/* pages/confirmorder/confirmorder.wxss */
+.main{
+  width: 100%;
+  height: 100%;
+  background: #f7f7f7;
+}
+
+/* 顶部选择框和时间提示 */
+.top-group{
+  height: 160rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding-left: 36rpx;
+  border-top: 1rpx solid #e4e4e4;
+}
+
+.top-group .swith{
+  height: 74rpx;
+  width: 192rpx;
+  border: 1px solid #1296db;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+}
+
+.swith .switch-left{
+  height: 100%;
+  width: 96rpx;
+  /* background: #1296db; */
+  /* color: #fff; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swith .swithc-right{
+  height: 100%;
+  width: 96rpx;
+  /* background: #fff; */
+  /* color: #111; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-group .text{
+  height: 90rpx;
+  width: 192rpx;
+  flex-direction: column;
+  padding-right: 36rpx;
+}
+
+.text .text-title{
+  font-size: 28rpx;
+  color: #111;
+}
+
+.text .text-time{
+  font-size: 30rpx;
+  color: #456423;
+  margin-top: 10rpx;
+}
+
+/* 门店信息 */
+.shop-group{
+  width: 100%;
+  height: 206rpx;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.shop-group .shop-title{
+  margin-left: 36rpx;
+  font-size: 30rpx;
+  color: #222;
+}
+
+.shop-group .shop-name{
+  margin-left: 36rpx;
+  font-size: 34rpx;
+  color: #000;
+}
+
+.shop-group .shop-address{
+  margin-left: 36rpx;
+  font-size: 28rpx;
+  color: gray;
+}
+
+/* 订单信息 */
+.order-group{
+  margin-top: 20rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.order-group .order-title{
+  color: #111;
+  font-size: 30rpx;
+  margin-left: 36rpx;
+  margin-top: 10rpx;
+}
+
+/* 商品详情 */
+.items-group{
+  width: 100%;
+  display: flex;
+  height: 60rpx;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  margin-top: 20rpx;
+}
+
+.items-group .item-name{
+  color: #111;
+  font-size: 32rpx;
+  width: 350rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.items-group .item-count{
+  color: #444;
+  font-size: 26rpx;
+  width: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.items-group .item-price{
+  color: #111;
+  font-size: 32rpx;
+  width: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-group .order-total-price{
+  margin-top: 20rpx;
+  margin-left: 40rpx;
+  margin-right: 36rpx;
+  border-top: 1rpx solid lightgray;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 10rpx;
+}
+
+.order-total-price .total-money{
+  margin-top: 10rpx;
+  font-size: 32rpx;
+}
+
+/* 其他选项 */
+.others-group{
+  width: 100%;
+  margin-top: 20rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.others-group .coupon{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10rpx;
+  height: 100rpx;
+}
+
+.coupon .coupon-title{
+  margin-left: 36rpx;
+  font-size: 32rpx;
+}
+
+.coupon .coupon-info{
+  font-size: 28rpx;
+  color: #5d92c7;
+  margin-right: 40rpx;
+}
+
+.others-group .pay-method{
+  height: 100rpx;
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.pay-method .pay-title{
+  margin-left: 36rpx;
+  font-size: 32rpx;
+}
+
+.pay-method .method{
+  font-size: 28rpx;
+  color: #5d92c7;
+  margin-right: 40rpx;
+}
+
+.line {
+  margin-left: 36rpx;
+  margin-right: 40rpx;
+  height: 1rpx;
+  background: lightgray;
+  margin-top: 10rpx;
+}
+
+/* 底部确认订单 */
+.query-order{
+  background: #fff;
+  height: 120rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0rpx;
+  /* border-top: 1rpx solid lightgray; */
+}
+
+.query-order .query-money{
+  display: 1;
+  align-items: center;
+  margin-left: 36rpx;
+}
+
+.query-money text{
+  font-size: 32rpx;
+  color: #333;
+}
+
+.query-money .totoalmoney{
+  font-size: 36rpx;
+}
+
+.query-order .query-submit{
+  width: 260rpx;
+  height: 100%;
+  background: #1296db;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  margin-right: 0rpx;
+}

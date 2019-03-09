@@ -20,6 +20,9 @@ Page({
     wx.request({
       url: preURL+'/product/get_all_product_infos/req',
       method: "POST",
+      data:{
+        shopObj: app.globalData.shopInfo.id,
+      },
       // 成功
       success: function(data){
         var items = data.data.body;

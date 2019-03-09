@@ -22,23 +22,8 @@ Page({
         name: '待评价',
         url: 'bill',
         imageurl: '../../images/person/personal_comment.png'
-      },
-      {
-        typeId: 3,
-        name: '退换/售后',
-        url: 'bill',
-        imageurl: '../../images/person/personal_service.png'
       }
     ],
-  },
-
-
-  //事件处理函数
-  toOrder: function(e) {
-    console.log(e);
-    wx.redirectTo({
-      url: '../order/order'
-    })
   },
 
   // 页面加载时动作
@@ -102,10 +87,28 @@ Page({
     }
   },
 
+  // 我的收藏
+  myLike: function(e) {
+
+  },
+
   // 我的地址
   myAddress: function(e) {
-    wx.navigateTo({
-      url: '../addressList/addressList'
-    });
+    if (app.globalData.userInfo != null) {
+      wx.navigateTo({
+        url: '../addressList/addressList'
+      });
+    } else {
+      wx.showModal({
+        title: '用户未授权',
+        content: '如需正常使用小程序功能，请按确定并且在【我的】页面中点击授权按钮，勾选用户信息并点击确定。',
+        showCancel: false,
+        success: function(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          }
+        }
+      })
+    }
   }
 })

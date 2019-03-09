@@ -22,7 +22,8 @@ Page({
       url: preURL + '/product/get_one_product_info/req',
       method: "POST",
       data: {
-        "productID": productID,
+        productID: productID,
+        shopObj: app.globalData.shopInfo.id,
       },
       // 成功
       success: function(data) {
@@ -70,7 +71,7 @@ Page({
     });
   },
 
-  // 跳到购物车  待开发
+  // 购物车
   toCar() {
     wx.switchTab({
       url: '/pages/cart/cart'
@@ -143,7 +144,7 @@ Page({
     // 加入购物车的商品
     var goods = this.data.goods;
 
-    // 添加是否被选择标记
+    // 在缓存中添加商品是否被选择标记字段，默认未选中
     goods.isSelect = false;
     // 加入购物车的商品数量
     var count = this.data.goods.count;
@@ -200,7 +201,7 @@ Page({
       wx.showToast({
         title: '加入购物车！',
         icon: 'success',
-        duration: 2000
+        duration: 1300
       });
       this.closeDialog();
       return;

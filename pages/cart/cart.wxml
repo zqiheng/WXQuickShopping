@@ -21,11 +21,11 @@
 
         <!-- 如果没有选中商品不勾选图标 -->
         <view wx:if="{{!item.isSelect}}">
-          <icon class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{index}}" type="circle" size="20"></icon>
+          <icon class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{index}}" type="circle" size="25"></icon>
         </view>
         <!-- 如果选中商品勾选图标 -->
         <view wx:elif="{{item.isSelect}}">
-          <icon class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{index}}" type="success" color="#f0145a" size="20"></icon>
+          <icon class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{index}}" type="success" color="#f0145a" size="25"></icon>
         </view>
 
         <!-- 购买商品的图片 -->
@@ -62,10 +62,10 @@
   <view class="row">
 
     <view wx:if="{{!isAllSelect}}">
-      <icon class="item-allselect" bindtap="allSelect" type="circle" size="20"></icon>
+      <icon class="item-allselect" bindtap="allSelect" type="circle" size="25"></icon>
     </view>
     <view wx:elif="{{isAllSelect}}">
-      <icon class="item-allselect" bindtap="allSelect" type="success" color="#f0145a" size="20"></icon>
+      <icon class="item-allselect" bindtap="allSelect" type="success" color="#f0145a" size="25"></icon>
     </view>
 
     <text class="small_text">全选</text>

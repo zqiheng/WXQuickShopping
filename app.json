@@ -8,6 +8,8 @@
     "pages/details/details",
     "complements/template/template",
     "pages/confirmorder/confirmorder",
+    "pages/addressList/addressList",
+    "pages/address/address",
     "pages/logs/logs"
   ],
   "window": {

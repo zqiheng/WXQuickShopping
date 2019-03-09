@@ -1,0 +1,26 @@
+@import '../../utils/weui.wxss';
+
+.weui-cells:before{
+  top:0;
+  border-top:1rpx solid white;
+  }
+.weui-cell{
+  line-height: 3.5rem;
+}
+.weui-cells:after{
+  bottom:0;border-bottom:1rpx solid white
+}
+
+.btn{
+  margin-top: 40rpx;
+  width: 80%;
+  background: #1296db;
+  color: #fff;
+}
+
+.line {
+  width: 90%;
+  height: 1rpx;
+  background: lightgray;
+  margin-left: 90rpx;
+}

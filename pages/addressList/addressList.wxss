@@ -1,0 +1,80 @@
+
+page {
+  border-top: 1rpx solid #f2f2f2;
+}
+
+.address-group{
+  width: 100%;
+  height: 180rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.address-group .address-left{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 20rpx;
+}
+
+.address-left .name{
+  font-size: 32rpx;
+  color: #111;
+}
+
+.address-left .name text{
+  font-size: 28rpx;
+  color: #112;
+}
+
+.address-left  .address{
+  font-size: 30rpx;
+  color: #222;
+}
+
+.address-left .transportDay{
+  font-size: 28rpx;
+  color: rgb(53, 52, 52);
+}
+
+.address-group .address-right{
+  height: 100%;
+  width: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.address-right image{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 分割线 */
+
+.separate {
+  margin: 5px 0px;
+  height: 2rpx;
+  background-color: #f2f2f2;
+}
+
+.add-address {
+  margin: 0 auto;
+  margin-top: 80rpx;
+  width: 300rpx;
+  height: 70rpx;
+  border: 1px #000 solid;
+  line-height: 70rpx;
+  text-align: center;
+  color: #000;
+  border-radius: 5rpx;
+  display: block;
+}
+
+.add-img {
+  margin-right: 15rpx;
+  width: 30rpx;
+  height: 30rpx;
+}

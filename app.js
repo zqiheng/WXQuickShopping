@@ -1,41 +1,60 @@
 //app.js
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
-      }
-    })
-  },
   globalData: {
-    userInfo: null,   // 用户信息
-    preURL: "http://zqiheng.e1.luyouxia.net:30795",  // 后台接口请求地址
-    shodInfo:null,   // 加载首页时，默认选择距离用户最近的商店
+    userInfo: null, // 用户信息
+    preURL: "http://zqiheng.e1.luyouxia.net:30795", // 后台接口请求地址
+    shopInfo: null, // 加载首页时，默认选择距离用户最近的商店
+  },
+
+  onLaunch: function() {
+    
+  },
+
+  onShow: function(){
+    var _this = this;
+    var preURL = _this.globalData.preURL;
+    // 获取用户地理定位
+    // 获取用户经纬度，来判断距离用户最近的商铺
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度 
+      success: function (res) {
+        var longitude = res.longitude; //经度 
+        var latitude = res.latitude; //维度 
+        console.log("经度：" + longitude + "  维度：" + latitude);
+        // 请求后台数据返回距离最近的商店
+        wx.request({
+          url: preURL + '/find_specify_shop_by_position',
+          method: 'POST',
+          data: {
+            longitude: longitude,
+            latitude: latitude,
+          },
+          success: function (res) {
+            if (res.data.code === 0) {
+              _this.globalData.shopInfo = res.data.body;
+              console.log(_this.globalData.shopInfo);
+            }
+          },
+          fail: function () {
+            wx.showToast({
+              title: '获取店铺信息失败',
+              duration: 1500,
+            })
+          }
+        })
+      },
+      fail: function () {
+        wx.showModal({
+          title: '用户未授权',
+          content: '如需正常使用小程序功能，需要授权定位哦！',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            }
+          }
+        })
+      }
+    })
   }
 })
