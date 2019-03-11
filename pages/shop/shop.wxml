@@ -1,3 +1,26 @@
+<!-- 顶部定位商店信息显示 -->
+<view class='top_group'>
+  <!-- 左侧定位信息显示 -->
+  <view class='position'>
+    <view class='position_left'>
+      <image src='../../images/position.png'></image>
+    </view>
+    <view class='position_right'>
+      <view class='name'>{{shopInfo.shopName}}</view>
+      <view class='distance'>距您 {{distance}}km</view>
+    </view>
+  </view>
+
+  <!-- 右侧派送方式显示 -->
+  <view class='swith'>
+    <view class='switch-left' catchtap='pickUp' style="background: {{pickUpOnself ? '#1296db' : '#fff'}}; color:{{pickUpOnself ? '#fff' : '#111'}};">自提</view>
+    <view class='swithc-right' catchtap='pickUp' style="background: {{pickUpOnself ? '#fff' : '#1296db'}}; color:{{pickUpOnself ? '#111' : '#fff'}};">派送</view>
+  </view>
+
+</view>
+
+
+<!-- 商品列表详情 -->
 <view class="mian_group">
 
   <!--左侧栏-->
@@ -26,7 +49,7 @@
         <!-- 商品信息循环渲染 -->
         <block wx:for="{{itemName}}" wx:key="item.productID">
           <view class="nav_right_items">
-            <navigator url="../details/details?productID={{item.productID}}&&imageUrl={{item.productPicture}}" hover-class="other-navigator-hover"  hover-stop-propagation="true">
+            <navigator url="../details/details?productID={{item.productID}}&&imageUrl={{item.productPicture}}" hover-class="other-navigator-hover" hover-stop-propagation="true">
               <view>
                 <image src="{{item.productPicture}}"></image>
                 <view>

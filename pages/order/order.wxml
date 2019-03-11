@@ -1,5 +1,98 @@
-<!--pages/order/order.wxml-->
-<view class="outter">
-  <view class='inner'>1</view>
-  <view class='inner'>2</view>
+<!-- 顶部导航栏布局 -->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">已完成</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待配送</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">待自提</view>
+  <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">已取消</view>
 </view>
+
+<swiper class="swiper-box" current="{{currentTab}}" duration="300" style="height:{{winHeight - 45}}px; width:{winWidth - 20}px" bindchange="bindChange">
+
+  <swiper-item>
+    <scroll-view class="scroll-view" scroll-y="true" style='height:100%;'>
+      <view class="order-items-group">
+        <!-- 订单顶部（订单号和状态） -->
+        <view class='items-top'>
+          <view class='items-no'>自提订单：33542420275667</view>
+          <view class='items-type'>已完成</view>
+        </view>
+        <!-- 下单门店信息和时间 -->
+        <view class='items-ortherInfo'>
+          <view class='items-shopInfo'>成都大学店（NO.0411)</view>
+          <view class='items-com-time'>2019-03-01 14:28:00</view>
+        </view>
+        <!-- 订单商品信息（一个订单可能包含多个商品,这里只列出第一条数据，其它数据再订单详情里全部显示） -->
+        <view class='productsInfo'>
+          <view class='product-name'>可口可乐等</view>
+          <view class='product-count'>共 3 件商品</view>
+        </view>
+        <!-- 订单总金额 -->
+        <view class='items-money'>
+          <view class='money'>¥83</view>
+        </view>
+      </view>
+
+      <!-- <view>暂无订单信息</view> -->
+
+    </scroll-view>
+  </swiper-item>
+
+  <swiper-item scroll-x="false" scroll-y="true" style='height:100%'>
+
+    <view class="order-items-group">
+      <!-- 订单顶部（订单号和状态） -->
+      <view class='items-top'>
+        <view class='items-no'>自提订单：33542420275669</view>
+        <view class='items-type'>待配送</view>
+      </view>
+      <!-- 下单门店信息和时间 -->
+      <view class='items-ortherInfo'>
+        <view class='items-shopInfo'>成都大学店（NO.0411)</view>
+        <view class='items-com-time'>2019-03-10 14:28:00</view>
+      </view>
+      <!-- 订单商品信息（一个订单可能包含多个商品,这里只列出第一条数据，其它数据再订单详情里全部显示） -->
+      <view class='productsInfo'>
+        <view class='product-name'>旺旺大礼包、可口可乐等</view>
+        <view class='product-count'>共 3 件商品</view>
+      </view>
+      <!-- 订单总金额 -->
+      <view class='items-money'>
+        <view class='money'>¥23</view>
+      </view>
+    </view>
+
+    <!-- <view>暂无订单信息</view> -->
+  </swiper-item>
+
+  <swiper-item scroll-x="false" scroll-y="true" style='height:100%'>
+
+    <view class="order-items-group">
+      <!-- 订单顶部（订单号和状态） -->
+      <view class='items-top'>
+        <view class='items-no'>自提订单：33542420275667</view>
+        <view class='items-type'>待自提</view>
+      </view>
+      <!-- 下单门店信息和时间 -->
+      <view class='items-ortherInfo'>
+        <view class='items-shopInfo'>成都大学店（NO.0411)</view>
+        <view class='items-com-time'>2019-03-01 14:28:00</view>
+      </view>
+      <!-- 订单商品信息（一个订单可能包含多个商品,这里只列出第一条数据，其它数据再订单详情里全部显示） -->
+      <view class='productsInfo'>
+        <view class='product-name'>怡宝纯净款泉水等</view>
+        <view class='product-count'>共 3 件商品</view>
+      </view>
+      <!-- 订单总金额 -->
+      <view class='items-money'>
+        <view class='money'>¥16</view>
+      </view>
+    </view>
+
+    <!-- <view>暂无订单信息</view> -->
+  </swiper-item>
+
+  <swiper-item scroll-x="false" scroll-y="true" style='height:100%'>
+    <view>暂无订单信息</view>
+  </swiper-item>
+
+</swiper>

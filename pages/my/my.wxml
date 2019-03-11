@@ -11,7 +11,7 @@
 <view class="separate"></view>
 
 <!-- 订单区域 -->
-<navigator class="order" catchtap="toOrder" url='../order/order'>
+<navigator class="order" url="{{hasUserInfo ? '../order/order':''}}" hover-class="none">
   <text class="myorder-text">我的订单</text>
   <text class="myorderlook-text">查看全部订单</text>
 </navigator>
@@ -20,7 +20,7 @@
 <!-- 订单详情区域 -->
 <view class="navs">
   <block wx:for-items="{{orderItems}}" wx:key="name">
-    <navigator class="nav-item" url='../order/order' data-type="{{item.name}}" data-typeid="{{item.typeId}}">
+    <navigator class="nav-item" url="{{hasUserInfo ? item.url:''}}" data-type="{{item.name}}" data-typeid="{{item.typeId}}" hover-class="none">
       <image src="{{item.imageurl}}" class="nav-image" />
       <text>{{item.name}}</text>
     </navigator>

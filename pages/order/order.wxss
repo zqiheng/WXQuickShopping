@@ -1,20 +1,114 @@
-/* pages/order/order.wxss */
-
-.outter{
-  display: flex;
-  justify-content: space-evenly;  /*flex水平（主轴）布局平均排列*/
-  align-items: center;  /*flex垂直（侧轴）方向居中布局*/
-  background: pink;
+/* 顶部导航栏布局样式 */
+.swiper-tab {
   width: 100%;
-  height: 600rpx;
-
+  border-bottom: 1rpx solid #e4e4e4;
+  text-align: center;
+  line-height: 80rpx;
 }
 
-.outter .inner{
-  width: 200rpx;
-  height: 200rpx;
-  background: coral;
-  padding: 20rpx;
-  border: 1px solid #e4e4e4;
-  box-sizing: border-box;
+.swiper-tab-list {
+  font-size: 32rpx;
+  display: inline-block;
+  width: 25%;
+  color: #777;
+}
+
+/* 选中颜色样式改变 */
+.on {
+  color: #1296db;
+  border-bottom: 5rpx solid #1296db;
+}
+
+/* 订单信息显示布局 */
+.swiper-box {
+  display: block;
+  /* height: 100%; */
+  /* width: 100%; */
+  overflow: hidden;
+  text-align: center;
+}
+
+/* 订单group布局 */
+.swiper-box .order-items-group {
+  background: #fff;
+  height: 240rpx;
+  /* background: #1296db; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 10rpx 10rpx;
+  padding: 8rpx;
+  border: 1rpx solid #e4e4e4;
+}
+
+.order-items-group .items-top{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* border-bottom: 1rpx solid #e4e4e4; */
+  margin-top: 10rpx;
+}
+
+.items-top .items-no{
+  color: gray;
+  font-size: 30rpx;
+}
+
+.items-top .items-type{
+  color: gray;
+  font-size: 32rpx;
+}
+
+.order-items-group .items-ortherInfo{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18rpx;
+}
+
+.items-ortherInfo .items-shopInfo{
+  color: #000;
+  font-size: 34rpx;
+}
+
+.items-ortherInfo .items-com-time{
+  color: gray;
+  font-size: 24rpx;
+}
+
+.order-items-group .productsInfo{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18rpx;
+}
+
+.productsInfo .product-name{
+  color: #222;
+  font-size: 30rpx;
+}
+
+.productsInfo .product-count{
+  color: #222;
+  font-size: 30rpx;
+}
+
+.order-items-group .items-money{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 18rpx;
+}
+
+.items-money .money{
+  color: #000;
+  font-size: 34rpx;
 }

@@ -2,12 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/shop/shop",
-    "pages/order/order",
     "pages/cart/cart",
     "pages/my/my",
     "pages/details/details",
     "complements/template/template",
     "pages/confirmorder/confirmorder",
+    "pages/order/order",
     "pages/addressList/addressList",
     "pages/address/address",
     "pages/logs/logs"

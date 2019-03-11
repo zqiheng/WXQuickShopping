@@ -93,6 +93,37 @@
   color: gray;
 }
 
+.shop-group .select_address{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shop-group .select_address text{
+  font-size: 34rpx;
+  color: #222;
+}
+
+.dispath_address .name{
+  margin-left: 36rpx;
+  font-size: 32rpx;
+  color: #000;
+}
+
+.dispath_address .address{
+  margin-top: 5rpx;
+  margin-left: 36rpx;
+  font-size: 28rpx;
+  color: #444;
+}
+
+.dispath_address .transportDay{
+  margin-top: 5rpx;
+  margin-left: 36rpx;
+  font-size: 28rpx;
+  color: gray;
+}
+
 /* 订单信息 */
 .order-group{
   margin-top: 20rpx;

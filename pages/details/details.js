@@ -47,7 +47,7 @@ Page({
           sellQuantity: productDetail.sellQuantity,
           shopObj: productDetail.shopObj,
           stockQuantity: productDetail.stockQuantity,
-          activityRrice: productDetail.productActivityPrice,
+          activityPrice: productDetail.productActivityPrice,
           price: productDetail.productRealPrice,
           count: 1, // 默认商品购买数量
           totalMoney: productDetail.productRealPrice // 购买总价

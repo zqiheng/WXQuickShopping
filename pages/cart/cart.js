@@ -16,6 +16,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+    // Todo:ZQI 考虑用户购物车问题。如果用户的店铺更换则应该清空购物车中的缓存数据。
     
   },
 
@@ -123,13 +125,18 @@ Page({
      * 5.结束流程---
      */
     var userInfo = app.globalData.userInfo;
-    // 判断用户是否授权登陆
+    // 判断用户是否授权登陆 如果没有则引导用户授权登陆
     if (userInfo === null) {
-      wx.showToast({
-        title: '请先登陆哦',
-        icon: 'loading',
-        duration: 1300
-      });
+      wx.showModal({
+        title: '用户未授权',
+        content: '如需正常使用小程序功能，请按确定并且在【我的】页面中点击授权按钮，勾选用户信息并点击确定。',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            // console.log('用户点击确定')
+          }
+        }
+      })
     } else {
       // 判断用户是否有选中的商品
       let i = 0,

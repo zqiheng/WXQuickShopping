@@ -4,6 +4,7 @@ App({
     userInfo: null, // 用户信息
     preURL: "http://zqiheng.e1.luyouxia.net:30795", // 后台接口请求地址
     shopInfo: null, // 加载首页时，默认选择距离用户最近的商店
+    pickUpOnself: true,   // 默认用户选择自提
   },
 
   onLaunch: function() {

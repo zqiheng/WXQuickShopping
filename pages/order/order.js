@@ -1,66 +1,66 @@
-// pages/order/order.js
+var app = getApp()
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
+    orders:null,     // 订单列表数组
+    winWidth: 0,     // 屏幕宽度
+    winHeight: 0,    // 屏幕高度
+    currentTab: 0,   // tab标记，默认在第一页
+  },
+
+  /**
+   * 监听页面加载时动作
+   */
+  onLoad: function() {
+    var _this = this;
+    
+    // 获取系统信息
+    wx.getSystemInfo({
+      success: function(res) {
+        console.log(res);
+        // 获取用户屏幕的宽度高度
+        _this.setData({
+          winWidth: res.windowWidth,
+          winHeight: res.windowHeight
+        });
+      }
+    });
+  },
+
+  /**
+   * 监听页面显示事件
+   */
+  onHide: function(e){
+    var userInfo = app.globalData.userInfo;
+    // 根据用户信息查找用户订单表
+
+    // TODO:
+  },
+
+  /**
+   * 滑动切换tab事件
+   */
+  bindChange: function(e) {
+    var _this = this;
+    _this.setData({
+      currentTab: e.detail.current
+    });
 
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 点击tab切换事件
    */
-  onLoad: function (options) {
+  swichNav: function(e) {
 
-  },
+    var _this = this;
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    if (_this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      _this.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
   }
 })

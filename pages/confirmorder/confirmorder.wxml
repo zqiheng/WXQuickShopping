@@ -4,12 +4,12 @@
   <view class='top-group'>
     <view class='swith'>
       <view class='switch-left' catchtap='pickUp' style="background: {{pickUpOnself ? '#1296db' : '#fff'}}; color:{{pickUpOnself ? '#fff' : '#111'}};">自提</view>
-      <view class='swithc-right' catchtap='pickUp' style="background: {{pickUpOnself ? '#fff' : '#1296db'}}; color:{{pickUpOnself ? '#111' : '#fff'}};">外送</view>
+      <view class='swithc-right' catchtap='pickUp' style="background: {{pickUpOnself ? '#fff' : '#1296db'}}; color:{{pickUpOnself ? '#111' : '#fff'}};">派送</view>
     </view>
 
     <view class='text' style="display:{{pickUpOnself ? 'none' : 'flex'}};">
       <view class='text-title'>立即配送</view>
-      <view class='text-time'>约11:53送达</view>
+      <view class='text-time' wx:if="{{dispatchAddress != null}}">约11:53送达</view>
     </view>
   </view>
 
@@ -18,8 +18,32 @@
     <view class='shop-title' wx:if="{{pickUpOnself}}">自提门店</view>
     <view class='shop-title' wx:else="{{pickUpOnself}}">配送地址</view>
 
-    <view class='shop-name'>{{shop.shopName}}({{shop.shopID}})</view>
-    <view class='shop-address'>{{shop.city}}{{shop.county}}{{shop.detailAddress}}</view>
+    <!-- 自提门店信息 -->
+    <block wx:if="{{pickUpOnself}}">
+      <view class='shop-name'>{{shop.shopName}}({{shop.shopID}})</view>
+      <view class='shop-address'>{{shop.city}}{{shop.county}}{{shop.detailAddress}}</view>
+    </block>
+    <!-- 派送地址信息 -->
+    <block wx:else>
+      <!-- 没有地址时提示用户选择地址 -->
+      <view class='select_address' wx:if="{{dispatchAddress.length <= 0}}" catchtap='selectAddress'>
+        <text>请选择配送地址</text>
+      </view>
+
+      <!-- 有地址时显示 -->
+      <view class='dispath_address' wx:else catchtap='selectAddress'>
+        <view class="name">{{dispatchAddress.consignee}}
+          <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text> {{dispatchAddress.mobile}}
+        </view>
+        <view class="address">
+          <view>{{dispatchAddress.address}}</view>
+        </view>
+        <view class="transportDay">
+          <view>{{dispatchAddress.transportDay}}</view>
+        </view>
+      </view>
+    </block>
+
   </view>
 
   <!-- 订单信息 -->
@@ -54,15 +78,15 @@
 </view>
 
 <!-- 底部提交订单 -->
-  <view class='query-order'>
-    <view class='query-money'>
-      <text>还需支付</text>
-      <text class='totoalmoney'> ¥{{totalMoney}}</text>
-    </view>
-
-    <view class='query-submit' catchtap='payFor'>
-      <text>去支付</text>
-    </view>
-
-
+<view class='query-order'>
+  <view class='query-money'>
+    <text>还需支付</text>
+    <text class='totoalmoney'> ¥{{totalMoney}}</text>
   </view>
+
+  <view class='query-submit' catchtap='payFor'>
+    <text>去支付</text>
+  </view>
+
+
+</view>

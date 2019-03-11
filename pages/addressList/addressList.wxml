@@ -1,10 +1,9 @@
-<view class='address-group' wx:for="{{addressList}}" wx:key="*this">
+<view class='address-group' wx:for="{{addressList}}" wx:key="{{item.consignee}}">
 
-  <view class="address-left">
+  <view class="address-left" catchtap='selectTheDefaultAddress' id="{{index}}" data-id="{{index}}">
     <view class="name">{{item.consignee}}
       <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text> {{item.mobile}}
     </view>
-
     <view class="address">
       <view>{{item.address}}</view>
     </view>
@@ -14,12 +13,10 @@
   </view>
   
   <view class="address-right">
-    <image src='../../images/tabBar/del.png' data-id="{{index}}" bindtap="delAddress"></image>
+    <image src='../../images/tabBar/del.png' data-id="{{index}}" bindtap="delAddress" id="img{{index}}"></image>
   </view>
 
 </view>
-
-<view class="separate" wx:if="{{!isNull}}"></view>
 
 <view class="add-address" bindtap="addAddress">
   <image class="add-img" src="../../images/add.png"></image>新增地址

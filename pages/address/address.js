@@ -133,6 +133,7 @@ Page({
     })
   },
 
+  // 运输时间改变 
   bindTransportDayChange: function(e) {
     // console.log('picker country 发生选择改变，携带值为', e.detail.value);
     this.setData({
@@ -140,6 +141,7 @@ Page({
     })
   },
 
+  // 省名称改变
   bindProvinceNameChange: function(e) {
     var that = this;
     // console.log('picker province 发生选择改变，携带值为', e.detail.value);
@@ -154,9 +156,9 @@ Page({
       countyIndex: 0,
       value: value
     })
-
   },
 
+  // city名称改变
   bindCityNameChange: function(e) {
     var that = this;
     // console.log('picker city 发生选择改变，携带值为', e.detail.value);
@@ -171,6 +173,7 @@ Page({
     })
   },
 
+  // 区域名称改变
   bindCountyNameChange: function(e) {
     var that = this;
     // console.log('picker county 发生选择改变，携带值为', e.detail.value);
@@ -193,7 +196,7 @@ Page({
 
     // 获取缓存数据
     var arr = wx.getStorageSync('addressList') || [];
-    console.log("用户地址缓存数组：arr,{}", arr);
+    // console.log("用户地址缓存数组：arr,{}", arr);
     addressList = {
       consignee: consignee,
       mobile: mobile,
@@ -202,7 +205,7 @@ Page({
       idDefaultAddress: false
     }
     arr.push(addressList);
-    wx.setStorageSync('addressList', arr);
+    // wx.setStorageSync('addressList', arr);
 
     // 同步到数据库中
     var preURL = app.globalData.preURL;
@@ -215,11 +218,21 @@ Page({
         data:{
           userObj: userObj,
           consigneeInfos: arr,
+        },
+        success: function(res){
+          // console.log("保存后的地址："+res);
+          // 成功后，将有地址主键的地址放到缓存中
+          wx.setStorageSync('addressList', res.data.body);
+          // 添加数据后返回
+          wx.navigateBack({})
+        },
+        fail: function(){
+          wx.showToast({
+            title: '保存失败！',
+            duration: 1300,
+          })
         }
       })
     }
-
-    // 添加数据后返回
-    wx.navigateBack({})
   }
 })

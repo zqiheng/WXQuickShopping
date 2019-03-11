@@ -7,20 +7,20 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     orderItems: [{
         typeId: 0,
-        name: '待付款',
-        url: 'bill',
+        name: '已完成',
+        url: '../order/order',
         imageurl: '../../images/person/personal_pay.png',
       },
       {
         typeId: 1,
         name: '待收货',
-        url: 'bill',
+        url: '../order/order',
         imageurl: '../../images/person/personal_receipt.png',
       },
       {
         typeId: 2,
-        name: '待评价',
-        url: 'bill',
+        name: '待自提',
+        url: '../order/order',
         imageurl: '../../images/person/personal_comment.png'
       }
     ],
@@ -68,7 +68,7 @@ Page({
     })
     // 保存用户信息到数据中
     if (app.globalData.userInfo != null) {
-      console.log("保存用户信息到数据库中");
+      // console.log("保存用户信息到数据库中");
       var info = app.globalData.userInfo;
       var preURL = app.globalData.preURL;
       wx.request({
@@ -82,6 +82,11 @@ Page({
           province: info.province,
           country: info.country,
           avatarUrl: info.avatarUrl,
+        },
+
+        // 将后台返回的用户信息保存到全局信息中（其中包含主键）
+        success: function(res){
+          app.globalData.userInfo = res.data.body;
         }
       });
     }

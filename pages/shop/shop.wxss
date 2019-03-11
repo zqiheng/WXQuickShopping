@@ -1,8 +1,90 @@
-/*总体主盒子*/  
+.top_group{
+  width: 100%;
+  height: 140rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1rpx solid #dedede;
+}
+
+.top_group .position{
+  width: 280rpx;
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-left: 30rpx;
+}
+
+.position .position_left{
+  width: 50rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.position_left image{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.position .position_right{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 20rpx;
+}
+
+.position_right .name{
+  font-size: 30rpx;
+  color: #111;
+}
+
+.position_right .distance{
+  font-size: 28rpx;
+  color: gray;
+}
+
+.top_group .swith{
+  height: 70rpx;
+  width: 192rpx;
+  border: 1px solid #1296db;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  margin-right: 30rpx;
+}
+
+.swith .switch-left{
+  height: 100%;
+  width: 96rpx;
+  /* background: #1296db; */
+  /* color: #fff; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swith .swithc-right{
+  height: 100%;
+  width: 96rpx;
+  /* background: #fff; */
+  /* color: #111; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/*商品信息总体主盒子*/  
 .main_group {  
   position: relative;  
   width: 100%;  
-  height: 1220rpx;  
+  /* height: 1220rpx;   */
   background-color: #f0f4f7;  
   color: #939393;  
 }  
@@ -18,13 +100,14 @@
   text-align: center;  
   /* position: fixed;  */
   left: 0;
-  top: 0;
+  /* top: 0; */
   border-top: 1rpx solid #dedede;
-}  
+}
+
 /*左侧栏list的item*/  
 .nav_left .nav_left_items{  
   background: #fff;
-  /*每个高30px*/  
+  /*每个高40px*/  
   height: 80rpx;  
   /*垂直居中*/  
   line-height: 80rpx;  
@@ -48,14 +131,14 @@
 .scroll_right{  
   /*右侧盒子使用了绝对定位*/  
   position: fixed;
-  top: 0;  
+  /* top: 0;   */
   right: 0; 
   overflow: auto; 
   flex: 1;  
   /*宽度75%，高度占满，并使用百分比布局*/  
   width: 75%;  
   height: 100%;   
-  padding: 20rpx;  
+  padding: 10rpx;  
   box-sizing: border-box;  
   background-color: #f0f4f7;
   border-top: 1rpx solid #dedede;
@@ -121,5 +204,6 @@
   background:#fff;
   text-align:center; 
   position: fixed;
-  left: 0;top: 0
+  left: 0;
+  /* top: 0 */
 }
