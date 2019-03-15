@@ -6,22 +6,22 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     orderItems: [{
-        typeId: 0,
-        name: '已完成',
-        url: '../order/order',
+        typeId: 1,
+        name: '待自提',
+      url: '../order/order?typeId=1',
         imageurl: '../../images/person/personal_pay.png',
       },
       {
-        typeId: 1,
-        name: '待收货',
-        url: '../order/order',
-        imageurl: '../../images/person/personal_receipt.png',
+        typeId: 2,
+        name: '待配送',
+        url: '../order/order?typeId=2',
+        imageurl: '../../images/person/personal_comment.png'
       },
       {
-        typeId: 2,
-        name: '待自提',
-        url: '../order/order',
-        imageurl: '../../images/person/personal_comment.png'
+        typeId: 3,
+        name: '待收货',
+        url: '../order/order?typeId=3',
+        imageurl: '../../images/person/personal_receipt.png',
       }
     ],
   },

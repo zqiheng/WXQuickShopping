@@ -209,7 +209,7 @@ Page({
 
     // 同步到数据库中
     var preURL = app.globalData.preURL;
-    var userObj = app.globalData.shopInfo.id;
+    var userObj = app.globalData.userInfo.id;
 
     if(arr.length > 0){
       wx.request({

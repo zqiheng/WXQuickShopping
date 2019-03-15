@@ -124,8 +124,8 @@ Page({
       showCancel: true,
       success: function(res) {
         if (res.confirm) {
-          console.log('用户点击确定');
-          console.log("地址Obj " + _this.data.dispatchAddress);
+          // console.log('用户点击确定');
+          // console.log("地址Obj " + _this.data.dispatchAddress);
           /**
            * 用户点击确定：生成订单
            * 1. 如果用户选择自提：则为自提订单
@@ -146,18 +146,48 @@ Page({
                 addressObj: _this.data.dispatchAddress.id,
                 pickUpOnself: pickUpOnself,
                 goodsItems: _this.data.carts,
+                payFlag: true,
+                ordersRemark: null,
               },
               success: function(res) {
-
+                console.log(res);
+                var code = res.data.code;
+                if(code === 0){
+                  // Todo:ZQI 购买成功返回商城  并 清空用户已经购物的商品缓存
+                  wx.showToast({
+                    title: '购买成功',
+                  })
+                }
               }
             })
-
           }
         } else {
           console.log('用户点击取消')
           /**
            * 用户点击取消：生成未完成订单
            */
+          if (userInfo) {
+            wx.request({
+              url: preURL + '/orders/add_orders_info/add',
+              method: 'POST',
+              data: {
+                userObj: userObj,
+                shopObj: shopObj,
+                addressObj: _this.data.dispatchAddress.id,
+                pickUpOnself: pickUpOnself,
+                goodsItems: _this.data.carts,
+                payFlag: false,
+                ordersRemark: null,
+              },
+              success: function (res) {
+                console.log(res);
+                var code = res.data.code;
+                if (code === 0) {
+                  // Todo:ZQI 
+                }
+              }
+            })
+          }
         }
       }
     })

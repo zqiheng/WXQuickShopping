@@ -16,8 +16,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
-    // Todo:ZQI 考虑用户购物车问题。如果用户的店铺更换则应该清空购物车中的缓存数据。
     
   },
 
@@ -26,6 +24,20 @@ Page({
    */
   onShow: function() {
     var _this = this;
+
+    // 【数据分离】考虑用户购物车问题。如果用户的店铺更换则应该清空购物车中的缓存数据。
+    var arr = wx.getStorageSync("cart") || [];
+    if (arr.length > 0) {
+      var shopObj = arr[0].shopObj;
+      if (app.globalData.shopInfo.id != shopObj) {
+        try {
+          wx.setStorageSync("cart", []);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
+
     // 获取缓存数据（购物车的缓存数组，没有数据，则赋予一个空数组）  
     var arr = wx.getStorageSync('cart') || [];
     console.info("缓存数据：" + arr);
