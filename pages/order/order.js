@@ -1,3 +1,4 @@
+var util = require("../../utils/util.js")
 var app = getApp()
 
 Page({
@@ -18,7 +19,11 @@ Page({
    * 监听页面加载时动作
    */
   onLoad: function(e) {
+    
     var _this = this;
+    _this.setData({
+      currentTab: e.typeId,
+    })
 
     // 获取系统信息
     wx.getSystemInfo({
@@ -28,7 +33,6 @@ Page({
         _this.setData({
           winWidth: res.windowWidth,
           winHeight: res.windowHeight,
-          currentTab: e.typeId,
         });
       }
     });
@@ -45,7 +49,7 @@ Page({
     // 根据用户信息查找用户订单表
     if (userInfo) {
       wx.request({
-        url: preURL + '/orders/get_orders_info/req',
+        url: preURL + '/orders/get_all_orders_info/req',
         method: 'POST',
         data: {
           userObj: userInfo.id,
@@ -92,19 +96,12 @@ Page({
               canceledOrders: canceledArr,
             })
 
-            console.log("已完成订单：" + _this.data.completedOrders);
-            console.log("待自提订单：" + _this.data.pickUpOneselfOrders);
-            console.log("待配送订单：" + _this.data.dispatchOrders);
-            console.log("待收货订单：" + _this.data.receivingOrders);
-            console.log("已取消订单：" + _this.data.canceledOrders);
-
+            console.log("已完成订单：" , _this.data.completedOrders);
+            console.log("待自提订单：" , _this.data.pickUpOneselfOrders);
+            console.log("待配送订单：" , _this.data.dispatchOrders);
+            console.log("待收货订单：" , _this.data.receivingOrders);
+            console.log("已取消订单：" , _this.data.canceledOrders);
           }
-          // else{
-          //   wx.showToast({
-          //     title: '请稍后再试！',
-          //     duration: 1500,
-          //   })
-          // }
         }
       })
     }
@@ -115,6 +112,7 @@ Page({
    */
   bindChange: function(e) {
     var _this = this;
+    // console.log(e);
     _this.setData({
       currentTab: e.detail.current
     });

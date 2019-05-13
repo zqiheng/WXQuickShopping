@@ -1,16 +1,52 @@
-//index.js
-//获取应用实例
+var util = require("../../utils/util.js")
 const app = getApp()
 
 Page({
   data: {
     codeMsg: '',
-    winHeight: 550
+    winHeight: 580,
+    address: null,
   },
 
   // 页面加载时
   onLoad: function() {
     var _this = this;
+    var preURL = app.globalData.preURL;
+
+    _this.setData({
+      // winHeight: app.globalData.windowHeight,      
+    })
+
+    util.getPermission(function (res) {
+      console.log(res);
+      var longitude = res.longitude; //经度 
+      var latitude = res.latitude; //维度 
+      // 请求后台数据返回距离最近的商店
+      util.findTheNearByShop(preURL, longitude, latitude, function (res) {
+        var shop = res.data.body;
+        if (res.data.code === 0) {
+          app.globalData.shopInfo = shop;
+          console.log(app.globalData.shopInfo);
+        }
+      });
+    });
+  },
+
+  onShow: function(){
+    if(app.globalData.shopInfo === null){
+      util.getPermission(function (res) {
+        var longitude = res.longitude; //经度 
+        var latitude = res.latitude; //维度 
+        // 请求后台数据返回距离最近的商店
+        var preURL = app.globalData.preURL;
+        util.findTheNearByShop(preURL, longitude, latitude, function (res) {
+          var shop = res.data.body;
+          if (res.data.code === 0) {
+            app.globalData.shopInfo = shop;
+          }
+        });
+      });
+    }
   },
 
   //点击扫描图片事件
@@ -18,7 +54,7 @@ Page({
     var _this = this;
     var preURL = app.globalData.preURL;
 
-    if (app.globalData.shopInfo.id != null){
+    if (app.globalData.shopInfo != null){
       //扫描API
       wx.scanCode({
         success: function (res) {
@@ -37,7 +73,7 @@ Page({
             // 成功
             success: function (data) {
               if (data.data.code === 0) {
-                console.log("有商品信息，马上加载");
+                console.log("商品信息加载中.......");
                 if (res.result) {
                   wx.navigateTo({
                     url: '../details/details?productID=' + res.result,
@@ -46,7 +82,7 @@ Page({
               } else {
                 wx.showToast({
                   title: '暂无此商品信息',
-                  duration: 1200,
+                  duration: 1500,
                 })
               }
             },

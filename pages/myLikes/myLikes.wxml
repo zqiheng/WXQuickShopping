@@ -1,0 +1,21 @@
+<block wx:if="{{myLike.length > 0}}">
+
+  <view class='main-group'>
+      <navigator class='goods-group' wx:for="{{myLike}}" wx:key="{{item.goodsId}}" url='../details/details?productID={{item.productID}}'>
+        <view class='left'>
+          <image src='{{item.productPicture}}'></image>
+        </view>
+        <view class='right'>
+          <view class='title'>{{item.productName}}</view>
+          <view class='price'>¥{{item.price}}</view>
+        </view>
+      </navigator>
+  </view>
+
+</block>
+
+<block wx:else>
+  <view class='box-group' style="height:{{winHeight * 2}}rpx">
+    <view class='title'>您的收藏列表为空哦</view>
+  </view>
+</block>

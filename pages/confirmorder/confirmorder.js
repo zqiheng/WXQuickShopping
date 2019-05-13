@@ -1,3 +1,4 @@
+var util = require("../../utils/util.js")
 const app = getApp();
 
 Page({
@@ -11,6 +12,7 @@ Page({
     totalMoney: 0, // 确认订单页面用户需要支付的总金额
     // pickUpOnself: true,   // 表示用户选择自提，（ true ： 隐藏外送时的时间显示区）
     dispatchAddress: null, // 用户选择配送时的地址信息
+    discountMoneys: 0, // 折扣价格
   },
 
   /**
@@ -20,15 +22,29 @@ Page({
     var _this = this;
     var shopInfo = app.globalData.shopInfo;
     var pickUpOnself = app.globalData.pickUpOnself;
-    // 获取缓存数据（用户需要购买商品的缓存数组）  
-    var arr = wx.getStorageSync('buyCart') || [];
-    console.log("用户需要购买的商品：" + arr);
+    var buyNowFlag = app.globalData.isImmediatelyBuy;
+
+    var arr = null;
+    // 表明用户是否是立即购买
+    if(!buyNowFlag){
+      // 不是立即购买，取buyCart数据
+      // 获取缓存数据（用户需要购买商品的缓存数组）  
+      arr = wx.getStorageSync('buyCart') || [];
+    } else {
+      // 是立即购买，取buyNow数据
+      arr = wx.getStorageSync('buyNow') || [];
+    }
+    console.log("用户需要购买的商品：" ,arr);
     // 有数据的话，就遍历数据，计算总金额 和 总数量  
     if (arr.length > 0) {
       let i = 0;
       var totalMoney = 0;
       for (i = 0; i < arr.length; i++) {
-        totalMoney += arr[i].count * arr[i].price;
+        totalMoney += util.multiply(arr[i].count, arr[i].price);
+        // Todo:ZQI 待优化  使用优惠券时才记录折扣价格
+        if (arr[i].activityPrice != null){
+          _this.data.discountMoneys += util.multiply(arr[i].count, (arr[i].realPrice - arr[i].price));
+        }
       };
       // console.log("总价格：" + count);
       // 更新数据  
@@ -36,6 +52,7 @@ Page({
         carts: arr,
         shop: shopInfo,
         totalMoney: totalMoney,
+        discountMoneys: _this.data.discountMoneys,
         pickUpOnself: pickUpOnself,
       });
     } else {
@@ -94,6 +111,7 @@ Page({
     // 当确认订单页面隐藏时，清空用户需要购买的商品信息
     try {
       wx.setStorageSync('buyCart', []);
+      // wx.setStorageSync('buyNow', []);
     } catch (e) {
       console.log("清空数组失败！");
     }
@@ -148,14 +166,22 @@ Page({
                 goodsItems: _this.data.carts,
                 payFlag: true,
                 ordersRemark: null,
+                discountMoneys: _this.data.discountMoneys,
               },
               success: function(res) {
                 console.log(res);
                 var code = res.data.code;
                 if(code === 0){
-                  // Todo:ZQI 购买成功返回商城  并 清空用户已经购物的商品缓存
-                  wx.showToast({
-                    title: '购买成功',
+                  // Todo:ZQI 购买跳转到购买成功页面  并 清空用户已经购买的商品缓存
+                  if(!app.globalData.isImmediatelyBuy){
+                    wx.setStorageSync("buyCart", []);
+                    wx.setStorageSync("cart", []);
+                  } else {
+                    // wx.setStorageSync("buyNow", []);
+                  }
+
+                  wx.navigateTo({
+                    url: '/pages/success/success',
                   })
                 }
               }
@@ -183,7 +209,10 @@ Page({
                 console.log(res);
                 var code = res.data.code;
                 if (code === 0) {
-                  // Todo:ZQI 
+                  // 跳转到指定页面
+                  wx.navigateTo({
+                    url: '/pages/canceled/canceled',
+                  })
                 }
               }
             })

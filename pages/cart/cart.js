@@ -1,3 +1,4 @@
+var util = require("../../utils/util.js")
 const app = getApp()
 
 Page({
@@ -16,7 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+
   },
 
   /**
@@ -40,7 +41,7 @@ Page({
 
     // 获取缓存数据（购物车的缓存数组，没有数据，则赋予一个空数组）  
     var arr = wx.getStorageSync('cart') || [];
-    console.info("缓存数据：" + arr);
+    console.info("购物车中的数据：" , arr);
 
     // 有数据的话，就遍历数据，计算总金额 和 总数量  
     if (arr.length > 0) {
@@ -65,24 +66,26 @@ Page({
   switchSelect: function(e) {
     var _this = this;
     // 获取item项的id，和数组的下标值  
-    var Allprice = 0, i = 0;
-    let id = e.target.dataset.id, index = parseInt(e.target.dataset.index);
+    var Allprice = 0,
+      i = 0;
+    let id = e.target.dataset.id,
+      index = parseInt(e.target.dataset.index);
 
     _this.data.carts[index].isSelect = !_this.data.carts[index].isSelect;
     //价钱统计
     if (_this.data.carts[index].isSelect) {
       // 如果选中改商品
-      _this.data.totalMoney = _this.data.totalMoney + (_this.data.carts[index].price * this.data.carts[index].count);
+      _this.data.totalMoney = _this.data.totalMoney + (util.multiply(_this.data.carts[index].price, this.data.carts[index].count));
     } else {
       // 如果没有选中改商品
-      if(_this.data.totalMoney > 0){
-        _this.data.totalMoney = _this.data.totalMoney - (_this.data.carts[index].price * this.data.carts[index].count);
+      if (_this.data.totalMoney > 0) {
+        _this.data.totalMoney = _this.data.totalMoney - (util.multiply(_this.data.carts[index].price, this.data.carts[index].count));
       }
     }
 
     // 是否全选判断
     for (i = 0; i < _this.data.carts.length; i++) {
-      Allprice = Allprice + (_this.data.carts[index].price * _this.data.carts[index].count);
+      Allprice = Allprice + ((util.multiply(_this.data.carts[i].price, this.data.carts[i].count)));
     }
     if (Allprice == _this.data.totalMoney) {
       _this.data.isAllSelect = true;
@@ -109,7 +112,7 @@ Page({
         // 标记商品被选中
         _this.data.carts[i].isSelect = true;
         // 该商品的总价格
-        _this.data.totalMoney = _this.data.totalMoney + (_this.data.carts[i].price * this.data.carts[i].count);
+        _this.data.totalMoney = _this.data.totalMoney + (util.multiply(_this.data.carts[i].price, this.data.carts[i].count));
       }
     } else {
       for (i = 0; i < _this.data.carts.length; i++) {
@@ -139,16 +142,7 @@ Page({
     var userInfo = app.globalData.userInfo;
     // 判断用户是否授权登陆 如果没有则引导用户授权登陆
     if (userInfo === null) {
-      wx.showModal({
-        title: '用户未授权',
-        content: '如需正常使用小程序功能，请按确定并且在【我的】页面中点击授权按钮，勾选用户信息并点击确定。',
-        showCancel: false,
-        success: function (res) {
-          if (res.confirm) {
-            // console.log('用户点击确定')
-          }
-        }
-      })
+      util.tipsInfo();
     } else {
       // 判断用户是否有选中的商品
       let i = 0,
@@ -163,8 +157,7 @@ Page({
         // 如果用户没有选中要购买的商品，提示用户选中商品
         wx.showToast({
           title: '请选中商品',
-          icon: 'loading',
-          duration: 1300
+          duration: 2000
         });
       } else {
         // 满足上面条件
@@ -248,9 +241,10 @@ Page({
   priceCount: function(e) {
     var _this = this;
     _this.data.totalMoney = 0;
+
     for (var i = 0; i < _this.data.carts.length; i++) {
       if (_this.data.carts[i].isSelect == true) {
-        _this.data.totalMoney = _this.data.totalMoney + (_this.data.carts[i].price * _this.data.carts[i].count);
+        _this.data.totalMoney = _this.data.totalMoney + (util.multiply(_this.data.carts[i].price, this.data.carts[i].count));
       }
     }
 
@@ -263,7 +257,6 @@ Page({
   // 删除item
   delGoods: function(e) {
     var _this = this;
-    console.log("商品商品：" + e);
     _this.data.carts.splice(e.target.id.substring(3), 1);
     // 更新data数据对象  
     if (_this.data.carts.length > 0) {
@@ -294,12 +287,14 @@ Page({
     })
   },
 
-  onUnload: function () {
+  /**
+   * 生命周期函数--监听页面销毁
+   */
+  onUnload: function() {
     var _this = this;
     _this.setData({
       totalMoney: 0,
       isAllSelect: false,
     })
   },
-
 })

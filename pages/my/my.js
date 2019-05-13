@@ -1,8 +1,9 @@
+var util = require("../../utils/util.js")
 var app = getApp()
 
 Page({
   data: {
-    userInfo: {},
+    userInfo: null,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     orderItems: [{
@@ -83,7 +84,6 @@ Page({
           country: info.country,
           avatarUrl: info.avatarUrl,
         },
-
         // 将后台返回的用户信息保存到全局信息中（其中包含主键）
         success: function(res){
           app.globalData.userInfo = res.data.body;
@@ -94,7 +94,13 @@ Page({
 
   // 我的收藏
   myLike: function(e) {
-
+    if (app.globalData.userInfo == null) {
+      util.tipsInfo();
+    } else {
+      wx.navigateTo({
+        url: '/pages/myLikes/myLikes',
+      })
+    }
   },
 
   // 我的地址
@@ -104,16 +110,70 @@ Page({
         url: '../addressList/addressList'
       });
     } else {
-      wx.showModal({
-        title: '用户未授权',
-        content: '如需正常使用小程序功能，请按确定并且在【我的】页面中点击授权按钮，勾选用户信息并点击确定。',
-        showCancel: false,
-        success: function(res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-          }
-        }
+      util.tipsInfo();
+    }
+  },
+
+  // 用户点击订单区域时判断是否用用户信息
+  noUserInfo: function(){
+    if (app.globalData.userInfo == null) {
+      util.tipsInfo();
+    }
+  },
+
+  /**
+   * 优惠券
+   */
+  myCoupon: function(){
+    if (app.globalData.userInfo == null) {
+      util.tipsInfo();
+    } else {
+      wx.navigateTo({
+        url: '/pages/myCoupons/myCoupons',
+      })
+    }
+  },
+
+  /**
+   * 在线客服
+   */
+  onLinePhone: function(){
+    if (app.globalData.userInfo == null) {
+      util.tipsInfo();
+    } else {
+      var shopInfo = app.globalData.shopInfo;
+      var phone = shopInfo.shopTel;
+        wx.makePhoneCall({
+          phoneNumber: phone,
+        })
+    }
+    
+  },
+
+  /**
+   * 售后记录
+   */
+  saledRecord: function(){
+    if (app.globalData.userInfo == null) {
+      util.tipsInfo();
+    } else {
+      wx.navigateTo({
+        url: '/pages/saledRecords/saledRecords',
+      })
+    }
+  },
+
+  /**
+   * 我的评价
+   */
+  myEvaluation: function(){
+    if (app.globalData.userInfo == null) {
+      util.tipsInfo();
+    } else {
+      wx.navigateTo({
+        url: '/pages/myEvaluations/myEvaluations',
       })
     }
   }
+  
 })

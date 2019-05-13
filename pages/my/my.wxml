@@ -1,4 +1,3 @@
-
 <!-- 顶部头像昵称显示 -->
 <view class="userinfo">
   <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="userinfo-btn"> 点击微信授权 </button>
@@ -11,7 +10,7 @@
 <view class="separate"></view>
 
 <!-- 订单区域 -->
-<navigator class="order" url="{{hasUserInfo ? '../order/order':''}}" hover-class="none">
+<navigator class="order" url="{{hasUserInfo ? '../order/order':''}}" hover-class="none" catchtap='noUserInfo'>
   <text class="myorder-text">我的订单</text>
   <text class="myorderlook-text">查看全部订单</text>
 </navigator>
@@ -20,7 +19,7 @@
 <!-- 订单详情区域 -->
 <view class="navs">
   <block wx:for-items="{{orderItems}}" wx:key="name">
-    <navigator class="nav-item" url="{{hasUserInfo ? item.url:''}}" data-type="{{item.name}}" data-typeid="{{item.typeId}}" hover-class="none">
+    <navigator class="nav-item" url="{{hasUserInfo ? item.url:''}}" data-type="{{item.name}}" data-typeid="{{item.typeId}}" hover-class="none" catchtap='noUserInfo'>
       <image src="{{item.imageurl}}" class="nav-image" />
       <text>{{item.name}}</text>
     </navigator>
@@ -32,12 +31,12 @@
 <!-- 其它功能区 -->
 <view class="person-list">
 
-  <view class="list-item">
+  <view class="list-item" catchtap='myCoupon'>
     <image class="item-image" src="../../images/person/personal_card.png"></image>
     <text class="item-text">优惠券</text>
   </view>
 
-  <view class="person-line"></view>
+  <view class="person-line" catchtap='myLike'></view>
 
   <view class="list-item" catchtap='myLike'>
     <image class="item-image" src="../../images/person/personal_favorite.png"></image>
@@ -53,25 +52,25 @@
 
   <view class="person-line"></view>
 
-  <view class="list-item">
+  <view class="list-item" catchtap='saledRecord'>
     <image class="item-image" src="../../images/person/personal_sale_record.png"></image>
     <text class="item-text">售后记录</text>
   </view>
 
   <view class="person-line"></view>
 
-  <view class="list-item">
+  <view class="list-item" catchtap='myEvaluation'>
     <image class="item-image" src="../../images/person/personal_evaluated.png"></image>
     <text class="item-text">我的评价</text>
   </view>
 
   <view class="person-line"></view>
 
-  <view class="list-item">
-    <image class="item-image" src="../../images/person/personal_customer.png"></image>
+  <view class="list-item" catchtap='onLinePhone'>
+    <image class="item-image" src="../../images/person/personal_customer.png" ></image>
     <text class="item-text">在线客服</text>
   </view>
-  
+
   <view class="person-line"></view>
 </view>
 <view class="separate"></view>

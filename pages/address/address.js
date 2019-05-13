@@ -1,4 +1,5 @@
 // 导入地区信息
+var util = require("../../utils/util.js")
 var area = require('../../utils/area.js');
 var areaInfo = []; //所有省市区县数据
 var provinces = []; //省

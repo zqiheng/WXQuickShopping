@@ -1,0 +1,3 @@
+<view class='main-group' style="height:{{winHeight * 2}}rpx">
+  <view class='title'>暂无记录哦</view>
+</view>

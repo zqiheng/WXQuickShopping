@@ -1,3 +1,4 @@
+var util = require("../../utils/util.js")
 const app = getApp();
 
 var goodsId = null;
@@ -16,6 +17,7 @@ Page({
     // console.log(event);
     var _this = this;
     var productID = event.productID;
+    var myLike = wx.getStorageSync("myLike") || [];
 
     // 根据productID请求后台数据
     wx.request({
@@ -48,10 +50,34 @@ Page({
           shopObj: productDetail.shopObj,
           stockQuantity: productDetail.stockQuantity,
           activityPrice: productDetail.productActivityPrice,
+          realPrice: productDetail.productRealPrice,
           price: productDetail.productRealPrice,
+          totalMoney: productDetail.productRealPrice, // 购买总价
           count: 1, // 默认商品购买数量
-          totalMoney: productDetail.productRealPrice // 购买总价
         }
+
+        // 如果活动价格不为空，则将商品出售价格改为活动价格
+        if (goods.activityPrice != null){
+          goods.price = goods.activityPrice;
+          goods.totalMoney = goods.activityPrice; // 购买总价
+        }
+        // 遍历用户收藏列表判断用户是否收藏该商品
+        var found = false;
+        if (myLike.length > 0){
+          let i = 0;
+          for (i = 0; i < myLike.length ; i++){
+            if (goods.productID === myLike[i].productID){
+              found = true;
+              break;
+            }
+          }
+        }
+        if(found){
+          _this.setData({
+            isLike: !_this.data.isLike
+          })
+        }
+
         _this.setData({
           goods: goods,
         })
@@ -65,9 +91,37 @@ Page({
   },
 
   // 收藏  待开发
-  addLike() {
-    this.setData({
-      isLike: !this.data.isLike
+  addLike(e) {
+    console.log(e);
+    var _this = this;
+    var productID = e.currentTarget.dataset.productid;
+    var myLike = wx.getStorageSync("myLike") || [];
+
+    // 1.如果缓存中有商品
+    var foundFlog = false;
+    if(myLike.length > 0){
+      let i = 0;
+      for(i = 0;i<myLike.length;i++){
+        if (productID === myLike[i].productID){
+          // 缓存中有数据，移除该商品
+          myLike.splice(i,1);
+          foundFlog = true;
+          break;
+        }
+      }
+      // 缓存中没有该商品信息
+      if(!foundFlog){
+        myLike.push(_this.data.goods);
+      }
+    } else {
+      // 2.如果缓存中没有该商品，则添加该商品信息到缓存中
+      myLike.push(_this.data.goods);
+    }
+    // 更新数据至缓存中
+    console.log("更新收藏数据为：",myLike);
+    wx.setStorageSync("myLike", myLike);
+    _this.setData({
+      isLike: !_this.data.isLike
     });
   },
 
@@ -78,13 +132,19 @@ Page({
     })
   },
 
-  // 立即购买  待开发
+  // 立即购买
   immeBuy() {
-    wx.showToast({
-      title: '购买成功',
-      icon: 'success',
-      duration: 2000
-    });
+    if (app.globalData.userInfo == null) {
+      util.tipsInfo();
+    } else {
+      app.globalData.isImmediatelyBuy = true;
+      var arr = new Array();
+      arr.push(this.data.goods);
+      wx.setStorageSync('buyNow', arr);
+      wx.navigateTo({
+        url: '/pages/confirmorder/confirmorder',
+      })
+    }
   },
 
   // sku 弹出
@@ -133,7 +193,8 @@ Page({
 
   //价格计算
   priceCount: function(e) {
-    this.data.goods.totalMoney = this.data.goods.price * this.data.goods.count;
+    // this.data.goods.totalMoney = this.data.goods.price * this.data.goods.count;
+    this.data.goods.totalMoney = util.multiply(this.data.goods.price, this.data.goods.count);
     this.setData({
       goods: this.data.goods
     })
@@ -141,6 +202,7 @@ Page({
 
   // 加入购物车(放入缓存中)
   addCar: function(e) {
+    app.globalData.isImmediatelyBuy = false;
     // 加入购物车的商品
     var goods = this.data.goods;
 

@@ -1,0 +1,105 @@
+<block wx:if="{{orders != null}}">
+  <view class='main-group'>
+
+    <!-- 顶部信息显示 -->
+    <block wx:if="{{orders.ordersType === 0}}">
+      <view class='top-group'>
+        <view class='group-info'>
+          <view class='title'>已完成</view>
+          <view class='more-info'>感谢您的光临 Good Luck!</view>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{orders.ordersType === 1}}">
+      <view class='top-group' style='height:280rpx'>
+        <view class='group-info'  style='height:260rpx'>
+          <!-- <view class='title'>待自提</view> -->
+          <canvas class='canvas' style="width:{{qrcodeWidth}}px; height:{{qrcodeWidth}}px;" canvas-id='canvas' bindlongtap='save'></canvas>
+          <view class='more-info'>提货时请扫码哦</view>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{orders.ordersType === 2}}">
+      <view class='top-group'>
+        <view class='group-info'>
+          <view class='title'>待配送</view>
+          <view class='more-info'>请稍后，商品正在出库中！</view>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{orders.ordersType === 3}}">
+      <view class='top-group'>
+        <view class='group-info'>
+          <view class='title'>待收货</view>
+          <view class='more-info'>商品正在配送中！</view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='top-group'>
+        <view class='group-info'>
+          <view class='title'>已取消</view>
+          <view class='more-info'>期待您再次光临。</view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 购买门店信息 -->
+    <view class='shop-group'>
+      <view class='left'>
+        <view class='shop-name'>{{orders.shopInfo.shopName}}（{{orders.shopInfo.shopID}})</view>
+      <view class='shop-address'>{{orders.shopInfo.city}}{{orders.shopInfo.county}}{{orders.shopInfo.detailAddress}}</view>
+      </view>
+      <view class='right' catchtap='callPhone'>
+        <image src='../../images/phone.png'></image>
+      </view>
+    </view>
+
+    <!-- 购买商品详细信息 -->
+    <view class='goods-group'>
+      <!-- 订单号和时间显示区域 -->
+      <block wx:if="{{orders.pickUpOneself === true}}">
+        <view class='goods-group-top'>
+          <view class='orders-no'>自提订单：{{orders.ordersId}}</view>
+          <view class='orders-time'>{{orders.ordersCreateTime}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='goods-group-top'>
+          <view class='orders-no'>派送订单：{{orders.ordersId}}</view>
+          <view class='orders-time'>{{orders.ordersCreateTime}}</view>
+        </view>
+      </block>
+
+
+      <!-- 商品名称数量价格显示区域 -->
+      <view class='goods-group-details' wx:for="{{orders.orderDetailsInfoList}}" wx:key="{{item.productInfo.id}}">
+        <view class='title'>{{item.productInfo.productName}}</view>
+        <view class='count'>×{{item.productNum}}</view>
+        <view class='money'>¥{{item.productPrice}}</view>
+      </view>
+
+      <!-- 如果是优惠订单则显示优惠活动和价格 -->
+      <view class='discount-group' wx:if="{{orders.discountMoneys != 0}}">
+        <view class='title'>订单优惠</view>
+        <view class='money'>-¥{{orders.discountMoneys}}</view>
+      </view>
+
+      <!-- 底部显示购买商品总数量和价格 -->
+      <view class='goods-bottom'>
+        <view class='left'> </view>
+        <view class='right'>
+          <view class='count'>共{{orders.totalNum}}件商品</view>
+          <view class='money'>实付
+            <text wx:if="{{orders.ordersType != 4}}">¥{{orders.totalMoney}}</text>
+            <text wx:else>¥0</text> 
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{orders.ordersType === 3}}">
+    <button bindtap='confirmReceipt' class='confirm-receipt-button'>确认收货</button>
+  </block>
+</block>

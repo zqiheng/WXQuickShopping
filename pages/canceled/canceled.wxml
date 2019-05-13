@@ -1,0 +1,8 @@
+<view class='main-group'>
+  <view class='info-group'>
+    <view class='title'>取消成功</view>
+    <view class='more'>期待您再次光临 Good Luck!</view>
+    <navigator class='nav' url='../orderDetails/orderDetails?id=1' hover-class="none">订单详情</navigator>
+    <navigator class='nav' url='/pages/index/index' open-type="switchTab" hover-class="none">返回首页</navigator>
+  </view>
+</view>

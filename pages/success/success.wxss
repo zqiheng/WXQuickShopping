@@ -1,0 +1,38 @@
+
+.main-group{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-group .info-group{
+  width: 400rpx;
+  height: 400rpx;
+  margin-top: 300rpx;
+  /* background: #1692db; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.info-group .title{
+  font-size: 38rpx;
+  color: #111;
+}
+
+.info-group .more{
+  font-size: 28rpx;
+  color: #444;
+}
+
+.info-group .nav{
+  font-size: 34rpx;
+  color: #222;
+  border: 1px solid gray;
+  border-radius: 10rpx;
+  padding: 10rpx;
+}
+

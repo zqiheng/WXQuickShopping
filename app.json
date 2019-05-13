@@ -10,6 +10,14 @@
     "pages/order/order",
     "pages/addressList/addressList",
     "pages/address/address",
+    "pages/success/success",
+    "pages/canceled/canceled",
+    "pages/orderDetails/orderDetails",
+    "pages/myCoupons/myCoupons",
+    "pages/myLikes/myLikes",
+    "pages/saledRecords/saledRecords",
+    "pages/myEvaluations/myEvaluations",
+    "pages/receiptSuccess/receiptSuccess",
     "pages/logs/logs"
   ],
   "window": {
@@ -51,7 +59,7 @@
 
   "permission":{
     "scope.userLocation": {
-      "desc": "获取定位，来选择商店哦"
+      "desc": "需要获取您的位置，来选择商店哦!"
     }
   }
 }

@@ -1,0 +1,8 @@
+<view class='main-group'>
+  <view class='info-group'>
+    <image src='/images/receiptSuccess.png'></image>
+    <view class='title'>收货成功</view>
+    <view class='more'>感谢您的光临 Good Luck!</view>
+    <navigator class='nav' url='/pages/index/index' open-type="switchTab" hover-class="none">返回首页</navigator>
+  </view>
+</view>

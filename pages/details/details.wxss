@@ -60,6 +60,19 @@
   font-size: 40rpx;
 }
 
+/* 活动标识*/
+.detail .activity{
+  height: 160rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.activity image{
+  width: 200rpx;
+  height: 160rpx;
+}
+
 /* 选择商品数量组件 */
 .main_group .select_num_group{
   width: 100%;
